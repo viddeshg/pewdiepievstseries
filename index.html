@@ -65,7 +65,7 @@
   <footer class="footer">
   <div class="content has-text-centered">
     <p>
-      <strong>Developed</strong> by <a href="https://instagram.com/viddeshg">Viddesh Gharpure</a>.<br> You are equally jobless if you are viewing this wesbite.
+      <strong>Developed</strong> by <a href="https://instagram.com/viddeshg">Viddesh Gharpure</a>.<br> You are equally jobless if you are viewing this website.
     </p>
   </div>
 </footer>
@@ -75,7 +75,7 @@
              var countP = 0, countT = 0;
 			 
              setInterval(function () {
-                $.getJSON('https://www.googleapis.com/youtube/v3/channels?part=statistics&id=UC-lHJZR3Gqxm24_Vd_AJ5Yw&key=AIzaSyA1I3ZbiN9paceqogyOC3S0_f0pJtz_hOI', function(data) {
+                $.getJSON('https://www.googleapis.com/youtube/v3/channels?part=statistics&id=UC-lHJZR3Gqxm24_Vd_AJ5Yw&key=AIzaSyAMO_EIj0iNOxFfb2r7FtP26uj2jS-64_g', function(data) {
                     var temp = data.items;
                     for (i in temp)
                        {
@@ -85,7 +85,7 @@
                        }
                });
              
-                $.getJSON('https://www.googleapis.com/youtube/v3/channels?part=statistics&id=UCq-Fj5jknLsUf-MWSy4_brA&key=AIzaSyA1I3ZbiN9paceqogyOC3S0_f0pJtz_hOI', function(data) {
+                $.getJSON('https://www.googleapis.com/youtube/v3/channels?part=statistics&id=UCq-Fj5jknLsUf-MWSy4_brA&key=AIzaSyAMO_EIj0iNOxFfb2r7FtP26uj2jS-64_g', function(data) {
                     var temp = data.items;
                     for (i in temp)
                        {
@@ -125,7 +125,7 @@
                      var diff = countP - countT;
                      $('#result').text("PewDiePie is leading by "+diff+" subscribers.");
                  }
-             },3500);
+             },5000);
              
              
              $('.linkP').click(function(){

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>PewDiePie vs T-Series</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <style>
+        .linkP, .linkT 
+        {
+            cursor: pointer;
+        }
+    </style>
+  </head>
+  <body>
+<section class="hero is-dark is-medium">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title has-text-centered">
+        PewDiePie vs T-Series
+      </h1>
+      <h2 class="subtitle has-text-centered">
+        Subscriber Count
+      </h2>
+    </div>
+  </div>
+</section>
+       
+<section class="section">
+<div class="container">
+<p id="result" class="subtitle notification has-text-centered" style="color: #333; font-weight: 600;"></p>
+<div class="tile is-ancestor">
+ 
+    <div class="tile is-parent">
+      <article class="tile is-child notification is-dark">
+        <p class="title">PewDiePie</p>
+        <p class="subtitle linkP">https://www.youtube.com/user/PewDiePie</p>
+        <div class="content">
+          <!-- Content -->
+          <progress class="progress progressP is-light" value="" max="100000000">15%</progress>
+            <p class="subtile">Subscriber count: <span id="countP"></span></p>
+        </div>
+      </article>
+    </div>
+    <div class="tile is-parent">
+      <article class="tile is-child notification is-light">
+        <p class="title">T-Series</p>
+        <p class="subtitle linkT">https://www.youtube.com/user/tseries</p>
+        <div class="content">
+          <!-- Content -->
+          <progress class="progress progressT is-dark" value="" max="100000000">15%</progress>
+          <p class="subtile">Subscriber count: <span id="countT"></span></p>
+        </div>
+      </article>
+    </div>
+</div>
+</div>
+<div class="container">
+    <canvas id="myChart"></canvas><!-- Plotly chart will be drawn inside this DIV -->
+</div>
+</section>
+
+  <footer class="footer">
+  <div class="content has-text-centered">
+    <p>
+      <strong>Developed</strong> by <a href="https://instagram.com/viddeshg">Viddesh Gharpure</a>.<br> You are equally jobless if you are viewing this wesbite.
+    </p>
+  </div>
+</footer>
+ <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+      <script type = "text/javascript" language = "javascript">
+         $(document).ready(function() {
+             var countP = 0, countT = 0;
+			 
+             setInterval(function () {
+                $.getJSON('https://www.googleapis.com/youtube/v3/channels?part=statistics&id=UC-lHJZR3Gqxm24_Vd_AJ5Yw&key=AIzaSyD5LcEsskw0i-TkEji-1SpV0BjUXDTCFes', function(data) {
+                    var temp = data.items;
+                    for (i in temp)
+                       {
+                        countP = temp[i].statistics.subscriberCount;
+                        $('#countP').text(countP);
+                        $('.progressP').attr("value",countP);
+                       }
+               });
+             
+                $.getJSON('https://www.googleapis.com/youtube/v3/channels?part=statistics&id=UCq-Fj5jknLsUf-MWSy4_brA&key=AIzaSyD5LcEsskw0i-TkEji-1SpV0BjUXDTCFes', function(data) {
+                    var temp = data.items;
+                    for (i in temp)
+                       {
+                        countT = temp[i].statistics.subscriberCount;
+                        $('#countT').text(countT);
+                        $('.progressT').attr("value",countT);
+                       }
+               });
+                 
+                var ctx = document.getElementById('myChart').getContext('2d');
+                var chart = new Chart(ctx, {
+                    // The type of chart we want to create
+                    type: 'line',
+
+                    // The data for our dataset
+                    data: {
+                        labels: ["PewDiePiew", "T-Series"],
+                        datasets: [{
+                            label: "My First dataset",
+                            backgroundColor: 'rgb(255, 99, 132)',
+                            borderColor: 'rgb(255, 99, 132)',
+                            data: [countP, countT],
+                        }]
+                    },
+
+                    // Configuration options go here
+                    options: {}
+                });   
+
+             if(countT>countP)
+                 {
+                     var diff = countT - countP;
+                     $('#result').text("T-Series is leading by "+diff+" subscribers.");
+                 }
+             else 
+                 {
+                     var diff = countP - countT;
+                     $('#result').text("PewDiePie is leading by "+diff+" subscribers.");
+                 }
+             },3500);
+             
+             
+             $('.linkP').click(function(){
+                 window.location.href="https://www.youtube.com/user/PewDiePie"
+             });
+             $('.linkT').click(function(){
+                 window.location.href="https://www.youtube.com/user/tseries"
+             });
+         });
+      </script>
+  </body>
+</html>

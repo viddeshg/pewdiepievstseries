@@ -56,10 +56,29 @@
       </article>
     </div>
 </div>
+<div class="tile is-ancestor">
+ 
+    <div class="tile is-6">
+        <div class="container">
+            <canvas id="myChart"></canvas><!-- Plotly chart will be drawn inside this DIV -->
+        </div>
+    </div>
+    <div class="tile is-6">
+<!--
+      <article class="tile is-child notification is-light">
+        <p class="title">T-Series</p>
+        <p class="subtitle linkT">https://www.youtube.com/user/tseries</p>
+        <div class="content">
+           Content 
+          <progress class="progress progressT is-dark" value="" max="100000000">15%</progress>
+          <p class="subtile">Subscriber count: <span id="countT"></span></p>
+        </div>
+      </article>
+-->
+    </div>
 </div>
-<div class="container">
-    <canvas id="myChart"></canvas><!-- Plotly chart will be drawn inside this DIV -->
 </div>
+
 </section>
 
   <footer class="footer">
@@ -102,11 +121,11 @@
 
                     // The data for our dataset
                     data: {
-                        labels: ["PewDiePiew", "T-Series"],
+                        labels: ["PewDiePie", "T-Series"],
                         datasets: [{
-                            label: "My First dataset",
-                            backgroundColor: 'rgb(255, 99, 132)',
-                            borderColor: 'rgb(255, 99, 132)',
+                            label: "PewDiePie vs T-series",
+                            backgroundColor: 'rgb(55, 55, 55)',
+                            borderColor: 'rgb(255, 255, 255)',
                             data: [countP, countT],
                         }]
                     },
@@ -125,7 +144,7 @@
                      var diff = countP - countT;
                      $('#result').text("PewDiePie is leading by "+diff+" subscribers.");
                  }
-             },5000);
+             },10000);
              
              
              $('.linkP').click(function(){
@@ -138,3 +157,4 @@
       </script>
   </body>
 </html>
+file:///Users/viddeshgharpure/Desktop/PewDiePie%20vs%20T-Series/index.html
